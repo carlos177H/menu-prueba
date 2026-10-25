@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3D Print Shop · Catálogo</title>
+<meta name="description" content="Catálogo de impresión 3D: llaveros, flexis, proyectos universitarios, lámparas y más. Pedidos por WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6faf9;
+  --surface:#ffffff;
+  --surface-2:#eef6f4;
+  --ink:#10201d;
+  --ink-2:#4a5d59;
+  --ink-3:#8a9a97;
+  --line:#e1ebe8;
+  --accent:#14b8a6;
+  --accent-ink:#0f766e;
+  --accent-soft:#ccfbf1;
+  --accent-softer:#effdfa;
+  --danger:#e11d48;
+  --radius:18px;
+  --radius-sm:12px;
+  --shadow-sm:0 1px 2px rgba(16,32,29,.06),0 1px 3px rgba(16,32,29,.04);
+  --shadow:0 10px 30px -12px rgba(16,32,29,.18);
+  --shadow-lg:0 30px 60px -20px rgba(16,32,29,.35);
+  --ease:cubic-bezier(.22,.8,.26,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Plus Jakarta Sans',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+body.locked{overflow:hidden}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:8px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+
+/* ---------- Header ---------- */
+header.top{position:sticky;top:0;z-index:40;background:rgba(246,250,249,.85);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid var(--line)}
+.top-row{display:flex;align-items:center;gap:16px;height:68px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.15rem;letter-spacing:-.02em;white-space:nowrap;text-decoration:none;color:var(--ink)}
+.brand-mark{width:36px;height:36px;border-radius:11px;background:linear-gradient(135deg,#2dd4bf,#0ea5a4);display:grid;place-items:center;box-shadow:0 6px 16px -6px rgba(20,184,166,.7)}
+.brand-mark svg{width:20px;height:20px}
+.search{flex:1;max-width:460px;margin-left:auto;position:relative}
+.search input{width:100%;height:44px;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:0 42px 0 44px;font-size:.95rem;transition:border-color .2s,box-shadow .2s}
+.search input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-soft)}
+.search .ico{position:absolute;left:16px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:var(--ink-3);pointer-events:none}
+.search .clear{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:30px;height:30px;border-radius:50%;display:none;place-items:center;color:var(--ink-3)}
+.search .clear:hover{background:var(--surface-2)}
+.search.has-value .clear{display:grid}
+.cart-btn-top{position:relative;height:44px;padding:0 16px;border-radius:999px;background:var(--ink);color:#fff;display:flex;align-items:center;gap:8px;font-weight:600;font-size:.9rem;transition:transform .2s var(--ease)}
+.cart-btn-top:hover{transform:translateY(-1px)}
+.cart-btn-top svg{width:18px;height:18px}
+
+/* ---------- Hero ---------- */
+.hero{padding:44px 0 22px}
+.hero h1{font-size:clamp(1.9rem,4.5vw,3rem);line-height:1.08;letter-spacing:-.035em;font-weight:800;max-width:16ch}
+.hero h1 span{background:linear-gradient(90deg,#0d9488,#14b8a6 60%,#38bdf8);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:var(--ink-2);margin-top:12px;max-width:56ch;font-size:1.02rem}
+.perks{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.perk{display:inline-flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line);padding:7px 13px;border-radius:999px;font-size:.84rem;font-weight:600;color:var(--ink-2)}
+.perk b{color:var(--accent-ink)}
+
+/* ---------- Tabs ---------- */
+.tabs-wrap{position:sticky;top:68px;z-index:30;background:linear-gradient(var(--bg) 70%,rgba(246,250,249,0));padding:14px 0 12px}
+.tabs{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:2px}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;height:40px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--surface);font-weight:600;font-size:.88rem;color:var(--ink-2);display:flex;align-items:center;gap:8px;transition:all .2s var(--ease)}
+.tab:hover{border-color:#b9d9d3;color:var(--ink)}
+.tab .n{font-size:.75rem;background:var(--surface-2);color:var(--ink-3);padding:1px 7px;border-radius:999px;font-weight:700}
+.tab.active{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:0 8px 18px -8px rgba(20,184,166,.8)}
+.tab.active .n{background:rgba(255,255,255,.25);color:#fff}
+.result-info{font-size:.86rem;color:var(--ink-3);margin:6px 0 16px;min-height:1.3em}
+
+/* ---------- Grid ---------- */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:22px;padding-bottom:120px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s;animation:rise .5s var(--ease) both}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:#cfe5e0}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.card-media{position:relative;aspect-ratio:4/3;background:var(--surface-2);overflow:hidden;cursor:pointer}
+.card-media img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.card:hover .card-media img{transform:scale(1.05)}
+.badge-disc{position:absolute;top:12px;left:12px;background:rgba(255,255,255,.92);backdrop-filter:blur(6px);color:var(--accent-ink);font-size:.74rem;font-weight:700;padding:5px 10px;border-radius:999px}
+.card-body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:6px;flex:1}
+.card-cat{font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--accent-ink)}
+.card-title{font-size:1.04rem;font-weight:700;letter-spacing:-.01em;line-height:1.3}
+.card-desc{font-size:.88rem;color:var(--ink-2);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card-foot{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin-top:auto;padding-top:12px}
+.price-from{font-size:.74rem;color:var(--ink-3);font-weight:600}
+.price{font-size:1.25rem;font-weight:800;letter-spacing:-.02em}
+.price small{font-size:.75rem;font-weight:600;color:var(--ink-3)}
+.btn{height:44px;padding:0 18px;border-radius:12px;font-weight:700;font-size:.9rem;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:all .2s var(--ease);white-space:nowrap}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 8px 18px -10px rgba(20,184,166,.9)}
+.btn-primary:hover{background:#0fa596;transform:translateY(-1px)}
+.btn-primary:disabled{background:#a7d8d1;box-shadow:none;cursor:not-allowed;transform:none}
+.btn-ghost{background:var(--surface-2);color:var(--ink)}
+.btn-ghost:hover{background:#e2efec}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-wa{background:#25d366;color:#08331a;box-shadow:0 10px 22px -10px rgba(37,211,102,.9)}
+.btn-wa:hover{background:#20c25c;transform:translateY(-1px)}
+.btn-sm{height:38px;padding:0 14px;font-size:.84rem;border-radius:10px}
+.btn-block{width:100%}
+.empty{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--ink-2)}
+.empty .big{font-size:2.4rem;margin-bottom:8px}
+
+/* ---------- FAB ---------- */
+.fab{position:fixed;right:22px;bottom:22px;z-index:45;width:62px;height:62px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;box-shadow:0 16px 32px -10px rgba(13,148,136,.75);transition:transform .25s var(--ease)}
+.fab:hover{transform:scale(1.06)}
+.fab svg{width:26px;height:26px}
+.count{position:absolute;top:-4px;right:-4px;min-width:24px;height:24px;padding:0 6px;border-radius:999px;background:var(--ink);color:#fff;font-size:.76rem;font-weight:800;display:grid;place-items:center;border:2px solid var(--bg)}
+.cart-btn-top .count{position:static;border:0;background:var(--accent);min-width:22px;height:22px}
+.bump{animation:bump .45s var(--ease)}
+@keyframes bump{30%{transform:scale(1.25)}60%{transform:scale(.92)}100%{transform:scale(1)}}
+
+/* ---------- Overlay / Modal ---------- */
+.overlay{position:fixed;inset:0;z-index:60;background:rgba(16,32,29,.45);backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:opacity .3s var(--ease)}
+.overlay.open{opacity:1;pointer-events:auto}
+.modal{position:fixed;inset:0;z-index:70;display:grid;place-items:center;padding:20px;pointer-events:none}
+.modal-box{background:var(--surface);border-radius:24px;box-shadow:var(--shadow-lg);width:100%;max-width:980px;max-height:calc(100vh - 40px);overflow:auto;opacity:0;transform:translateY(20px) scale(.98);transition:all .35s var(--ease);position:relative}
+.modal.open{pointer-events:auto}
+#checkoutModal{z-index:80;transition:background .3s var(--ease)}
+#checkoutModal.open{background:rgba(16,32,29,.35)}
+.modal.open .modal-box{opacity:1;transform:none}
+.close-x{position:absolute;top:14px;right:14px;z-index:3;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.95);display:grid;place-items:center;box-shadow:var(--shadow-sm);transition:background .2s}
+.close-x:hover{background:var(--surface-2)}
+.close-x svg{width:18px;height:18px}
+
+/* Product modal */
+.pm{display:grid;grid-template-columns:1.05fr 1fr}
+.gallery{padding:20px;background:var(--surface-2);display:flex;flex-direction:column;gap:12px}
+.stage{position:relative;aspect-ratio:1/1;border-radius:18px;overflow:hidden;background:#dfeeea}
+.stage-track{display:flex;height:100%;transition:transform .45s var(--ease)}
+.stage-track img{flex:none;width:100%;height:100%;object-fit:cover}
+.nav-arrow{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.92);display:grid;place-items:center;box-shadow:var(--shadow-sm);transition:all .2s}
+.nav-arrow:hover{background:#fff;transform:translateY(-50%) scale(1.06)}
+.nav-arrow svg{width:18px;height:18px}
+.nav-arrow.prev{left:12px}.nav-arrow.next{right:12px}
+.dots{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;gap:6px;background:rgba(16,32,29,.35);padding:6px 8px;border-radius:999px}
+.dots span{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.55);transition:all .25s}
+.dots span.on{background:#fff;width:18px;border-radius:999px}
+.thumbs{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.thumb{aspect-ratio:1/1;border-radius:12px;overflow:hidden;border:2px solid transparent;opacity:.6;transition:all .2s;background:#dfeeea}
+.thumb img{width:100%;height:100%;object-fit:cover}
+.thumb:hover{opacity:.9}
+.thumb.on{border-color:var(--accent);opacity:1}
+.pm-info{padding:30px 30px 26px;display:flex;flex-direction:column;gap:14px}
+.pm-info h2{font-size:1.6rem;line-height:1.15;letter-spacing:-.025em;font-weight:800;padding-right:40px}
+.pm-desc{color:var(--ink-2);font-size:.95rem}
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.tier{border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center;transition:all .25s var(--ease)}
+.tier .r{font-size:.74rem;color:var(--ink-3);font-weight:600}
+.tier .p{font-weight:800;font-size:1rem;margin-top:2px}
+.tier .d{font-size:.72rem;font-weight:700;color:var(--accent-ink)}
+.tier.on{border-color:var(--accent);background:var(--accent-softer);box-shadow:0 0 0 3px var(--accent-soft)}
+.calc{background:var(--surface-2);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:12px}
+.qty-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.qty-label{font-weight:700;font-size:.9rem}
+.stepper{display:flex;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.stepper button{width:42px;height:42px;display:grid;place-items:center;font-size:1.2rem;font-weight:700;color:var(--accent-ink);transition:background .15s}
+.stepper button:hover{background:var(--accent-softer)}
+.stepper input{width:64px;height:42px;border:0;text-align:center;font-weight:800;font-size:1rem;background:transparent;-moz-appearance:textfield}
+.stepper input::-webkit-outer-spin-button,.stepper input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.stepper input:focus{outline:none}
+.stepper.sm button{width:32px;height:32px;font-size:1rem}
+.stepper.sm input{width:40px;height:32px;font-size:.9rem}
+.calc-lines{display:flex;flex-direction:column;gap:4px;font-size:.9rem;color:var(--ink-2)}
+.calc-lines div{display:flex;justify-content:space-between}
+.calc-lines .save{color:var(--accent-ink);font-weight:700}
+.calc-total{display:flex;justify-content:space-between;align-items:baseline;border-top:1px dashed #c9dcd8;padding-top:10px}
+.calc-total span{font-weight:700}
+.calc-total strong{font-size:1.6rem;letter-spacing:-.03em;font-weight:800}
+.nudge{font-size:.82rem;background:#fff;border:1px solid var(--accent-soft);color:var(--accent-ink);padding:8px 12px;border-radius:10px;font-weight:600}
+.nudge:empty{display:none}
+
+/* ---------- Drawer ---------- */
+.drawer{position:fixed;top:0;right:0;bottom:0;z-index:70;width:min(440px,100vw);background:var(--surface);box-shadow:var(--shadow-lg);transform:translateX(100%);transition:transform .4s var(--ease);display:flex;flex-direction:column}
+.drawer.open{transform:none}
+.drawer-head{display:flex;align-items:center;justify-content:space-between;padding:20px 22px;border-bottom:1px solid var(--line)}
+.drawer-head h3{font-size:1.2rem;font-weight:800;letter-spacing:-.02em}
+.drawer-head .close-x{position:static;box-shadow:none;background:var(--surface-2)}
+.drawer-body{flex:1;overflow:auto;padding:16px 22px 22px}
+.drawer-foot{border-top:1px solid var(--line);padding:16px 22px 20px;background:var(--surface)}
+.ci{display:grid;grid-template-columns:64px 1fr auto;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);align-items:start}
+.ci img{width:64px;height:64px;border-radius:12px;object-fit:cover;background:var(--surface-2)}
+.ci-name{font-weight:700;font-size:.92rem;line-height:1.3}
+.ci-meta{font-size:.8rem;color:var(--ink-3);margin:2px 0 8px}
+.ci-meta .tag{display:inline-block;background:var(--accent-soft);color:var(--accent-ink);font-weight:700;padding:0 6px;border-radius:6px;margin-left:4px}
+.ci-right{text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.ci-sub{font-weight:800}
+.ci-del{font-size:.78rem;color:var(--ink-3);text-decoration:underline}
+.ci-del:hover{color:var(--danger)}
+.cart-empty{text-align:center;padding:40px 10px;color:var(--ink-2)}
+.cart-empty .big{font-size:2.6rem}
+.section-t{font-size:.8rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-3);margin:22px 0 10px}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+.field label{font-size:.85rem;font-weight:700}
+.field label .req{color:var(--danger)}
+.field input,.field select,.field textarea{border:1px solid var(--line);border-radius:12px;padding:11px 13px;font-size:.92rem;background:var(--surface);transition:border-color .2s,box-shadow .2s;width:100%}
+.field textarea{resize:vertical;min-height:76px}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-soft)}
+.field.err input,.field.err select{border-color:var(--danger);box-shadow:0 0 0 4px #ffe4e9}
+.field .hint{font-size:.76rem;color:var(--danger);display:none}
+.field.err .hint{display:block}
+.totals{display:flex;flex-direction:column;gap:4px;margin-bottom:14px;font-size:.9rem;color:var(--ink-2)}
+.totals div{display:flex;justify-content:space-between}
+.totals .grand{font-size:1.15rem;color:var(--ink);font-weight:800;margin-top:4px}
+.totals .save{color:var(--accent-ink);font-weight:700}
+
+/* ---------- Checkout ---------- */
+.co{max-width:560px}
+.co-inner{padding:28px}
+.co-inner h2{font-size:1.45rem;font-weight:800;letter-spacing:-.025em;padding-right:40px}
+.co-sub{color:var(--ink-2);font-size:.92rem;margin-top:4px}
+.summary{background:var(--surface-2);border-radius:14px;padding:14px 16px;margin:18px 0;font-size:.88rem}
+.summary .row{display:flex;justify-content:space-between;gap:10px;padding:3px 0;color:var(--ink-2)}
+.summary .row.total{border-top:1px dashed #c9dcd8;margin-top:8px;padding-top:10px;color:var(--ink);font-weight:800;font-size:1.05rem}
+.pay-opts{display:grid;gap:10px}
+.pay{display:flex;align-items:center;gap:14px;border:1.5px solid var(--line);border-radius:14px;padding:14px 16px;cursor:pointer;transition:all .2s var(--ease)}
+.pay:hover{border-color:#b9d9d3}
+.pay input{appearance:none;-webkit-appearance:none;width:20px;height:20px;border:2px solid #b9cbc7;border-radius:50%;flex:none;display:grid;place-items:center;transition:all .2s}
+.pay input::after{content:"";width:10px;height:10px;border-radius:50%;background:var(--accent);transform:scale(0);transition:transform .2s var(--ease)}
+.pay input:checked{border-color:var(--accent)}
+.pay input:checked::after{transform:scale(1)}
+.pay:has(input:checked){border-color:var(--accent);background:var(--accent-softer)}
+.pay .t{font-weight:700;font-size:.95rem}
+.pay .s{font-size:.8rem;color:var(--ink-3)}
+.pay .emo{font-size:1.4rem;margin-left:auto}
+.bank{display:none;margin-top:14px;border:1px solid var(--accent-soft);background:linear-gradient(180deg,var(--accent-softer),#fff);border-radius:16px;padding:16px;animation:rise .35s var(--ease)}
+.bank.show{display:block}
+.bank-row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid #e3f1ee;font-size:.9rem}
+.bank-row:last-of-type{border-bottom:0}
+.bank-row span{color:var(--ink-3);font-weight:600}
+.bank-row b{font-weight:700;text-align:right}
+.clabe{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.04em;font-size:.95rem}
+.clabe-wrap{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.copy-btn{height:32px;padding:0 12px;border-radius:9px;background:var(--accent);color:#fff;font-size:.78rem;font-weight:700;display:inline-flex;align-items:center;gap:6px}
+.copy-btn.ok{background:var(--ink)}
+.copy-btn svg{width:14px;height:14px}
+.upload{margin-top:14px;display:flex;align-items:center;gap:12px;border:1.5px dashed #a7d8d1;border-radius:14px;padding:14px;cursor:pointer;background:#fff;transition:all .2s}
+.upload:hover{border-color:var(--accent);background:var(--accent-softer)}
+.upload input{display:none}
+.upload .ico{width:42px;height:42px;border-radius:12px;background:var(--accent-soft);display:grid;place-items:center;flex:none;overflow:hidden}
+.upload .ico img{width:100%;height:100%;object-fit:cover}
+.upload .ico svg{width:20px;height:20px;color:var(--accent-ink)}
+.upload .t{font-weight:700;font-size:.88rem}
+.upload .s{font-size:.78rem;color:var(--ink-3);word-break:break-all}
+.upload.has{border-style:solid;border-color:var(--accent)}
+.note{font-size:.78rem;color:var(--ink-3);margin-top:10px;line-height:1.45}
+.co-actions{margin-top:20px;display:grid;gap:10px}
+.success{text-align:center;padding:10px 0}
+.success .big{width:72px;height:72px;border-radius:50%;background:var(--accent-soft);display:grid;place-items:center;margin:0 auto 14px;font-size:2rem}
+.success p{color:var(--ink-2);margin-top:6px}
+
+/* ---------- Toast ---------- */
+.toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,30px);z-index:90;background:var(--ink);color:#fff;padding:12px 18px;border-radius:12px;font-size:.9rem;font-weight:600;box-shadow:var(--shadow-lg);opacity:0;pointer-events:none;transition:all .35s var(--ease);max-width:calc(100vw - 32px)}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+footer{border-top:1px solid var(--line);padding:26px 0 100px;color:var(--ink-3);font-size:.85rem;text-align:center}
+
+/* ---------- Responsive ---------- */
+@media (max-width:860px){
+  .pm{grid-template-columns:1fr}
+  .gallery{padding:14px}
+  .pm-info{padding:22px 20px 22px}
+  .pm-info h2{font-size:1.35rem;padding-right:0}
+}
+@media (max-width:640px){
+  .wrap{padding:0 16px}
+  .top-row{height:auto;flex-wrap:wrap;padding:12px 0;gap:10px}
+  .search{order:3;max-width:none;flex-basis:100%}
+  .cart-btn-top{margin-left:auto;height:40px;padding:0 12px}
+  .cart-btn-top .lbl{display:none}
+  .tabs-wrap{top:118px}
+  .hero{padding:26px 0 10px}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px}
+  .card-body{padding:12px 13px 14px}
+  .card-title{font-size:.94rem}
+  .card-desc{display:none}
+  .card-foot{flex-direction:column;align-items:stretch}
+  .card-foot .btn{height:38px;font-size:.82rem}
+  .price{font-size:1.1rem}
+  .modal{padding:0;place-items:end center}
+  .modal-box{border-radius:22px 22px 0 0;max-height:94vh}
+  .co-inner{padding:22px 18px}
+  .tiers .p{font-size:.92rem}
+  .fab{right:16px;bottom:16px;width:56px;height:56px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-row">
+    <a class="brand" href="#" aria-label="3D Print Shop, inicio">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 7v10l9 5 9-5V7z"/><path d="m3 7 9 5 9-5M12 12v10"/></svg>
+      </span>
+      3D Print Shop
+    </a>
+    <div class="search" id="searchBox">
+      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="search" type="search" placeholder="Busca llaveros, flexis, lámparas…" autocomplete="off" aria-label="Buscar productos">
+      <button class="clear" id="clearSearch" aria-label="Limpiar búsqueda">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <button class="cart-btn-top" data-open-cart aria-label="Abrir carrito">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6 5 3H2"/><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/></svg>
+      <span class="lbl">Carrito</span>
+      <span class="count" data-count>0</span>
+    </button>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <h1>Ideas que se <span>imprimen</span> capa por capa.</h1>
+    <p>Llaveros, flexis, piezas para tus proyectos de la uni, lámparas y regalos de temporada. Hechos a pedido en PLA y PETG, con entrega en la zona de Pachuca.</p>
+    <div class="perks">
+      <span class="perk">📦 <b>5+ pz</b> −5% por pieza</span>
+      <span class="perk">🎯 <b>20+ pz</b> −15% por pieza</span>
+      <span class="perk">💬 Pedidos por WhatsApp</span>
+    </div>
+  </section>
+
+  <div class="tabs-wrap">
+    <nav class="tabs" id="tabs" role="tablist" aria-label="Categorías"></nav>
+  </div>
+  <p class="result-info" id="resultInfo" aria-live="polite"></p>
+
+  <section class="grid" id="grid" aria-label="Productos"></section>
+</main>
+
+<footer>
+  <div class="wrap">© <span id="year"></span> 3D Print Shop · Pachuca, Hidalgo · Imágenes ilustrativas</div>
+</footer>
+
+<!-- Floating cart button -->
+<button class="fab" data-open-cart aria-label="Abrir carrito">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6 5 3H2"/><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/></svg>
+  <span class="count" data-count>0</span>
+</button>
+
+<div class="overlay" id="overlay"></div>
+
+<!-- Product modal -->
+<div class="modal" id="productModal" role="dialog" aria-modal="true" aria-labelledby="pmTitle">
+  <div class="modal-box">
+    <button class="close-x" data-close aria-label="Cerrar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+    <div class="pm">
+      <div class="gallery">
+        <div class="stage" id="stage">
+          <div class="stage-track" id="stageTrack"></div>
+          <button class="nav-arrow prev" id="prevImg" aria-label="Imagen anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+          <button class="nav-arrow next" id="nextImg" aria-label="Imagen siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+          <div class="dots" id="dots"></div>
+        </div>
+        <div class="thumbs" id="thumbs"></div>
+      </div>
+      <div class="pm-info">
+        <div>
+          <div class="card-cat" id="pmCat"></div>
+          <h2 id="pmTitle"></h2>
+        </div>
+        <p class="pm-desc" id="pmDesc"></p>
+        <div>
+          <div class="section-t" style="margin-top:0">Precio por mayoreo</div>
+          <div class="tiers" id="pmTiers"></div>
+        </div>
+        <div class="calc">
+          <div class="qty-row">
+            <span class="qty-label">Cantidad</span>
+            <div class="stepper">
+              <button id="qtyMinus" aria-label="Menos">−</button>
+              <input id="qtyInput" type="number" min="1" max="999" value="1" inputmode="numeric" aria-label="Cantidad">
+              <button id="qtyPlus" aria-label="Más">+</button>
+            </div>
+          </div>
+          <div class="calc-lines" id="calcLines"></div>
+          <div class="nudge" id="nudge"></div>
+          <div class="calc-total"><span>Total</span><strong id="calcTotal">$0</strong></div>
+        </div>
+        <button class="btn btn-primary btn-block" id="addToCart" style="height:50px;font-size:.98rem">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6 5 3H2"/><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/></svg>
+          Agregar al carrito
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Cart drawer -->
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+  <div class="drawer-head">
+    <h3 id="drawerTitle">Tu carrito</h3>
+    <button class="close-x" data-close aria-label="Cerrar carrito">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="drawer-body">
+    <div id="cartList"></div>
+    <div id="customerForm">
+      <div class="section-t">Datos de entrega</div>
+      <div class="field" id="fName">
+        <label for="cName">Nombre completo <span class="req">*</span></label>
+        <input id="cName" type="text" placeholder="Ej. Ana López Hernández" autocomplete="name">
+        <span class="hint">Escribe tu nombre para el pedido.</span>
+      </div>
+      <div class="field" id="fLoc">
+        <label for="cLoc">Ubicación / punto de entrega <span class="req">*</span></label>
+        <select id="cLoc"></select>
+        <span class="hint">Elige dónde te lo entregamos.</span>
+      </div>
+      <div class="field" id="fLocOther" style="display:none">
+        <label for="cLocOther">Especifica el lugar <span class="req">*</span></label>
+        <input id="cLocOther" type="text" placeholder="Colonia, referencia o punto de encuentro">
+        <span class="hint">Indica el punto de entrega.</span>
+      </div>
+      <div class="field">
+        <label for="cNotes">Notas o especificaciones</label>
+        <textarea id="cNotes" placeholder="Colores, nombre a grabar, fecha que lo necesitas…"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="drawer-foot">
+    <div class="totals" id="cartTotals"></div>
+    <button class="btn btn-primary btn-block" id="toCheckout" style="height:50px">Proceder al pago →</button>
+  </div>
+</aside>
+
+<!-- Checkout modal -->
+<div class="modal" id="checkoutModal" role="dialog" aria-modal="true" aria-labelledby="coTitle">
+  <div class="modal-box co">
+    <button class="close-x" data-close aria-label="Cerrar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+    <div class="co-inner" id="coInner"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* =========================================================
+   CONFIGURACIÓN DEL NEGOCIO — edita aquí
+   ========================================================= */
+const CONFIG = {
+  negocio: "3D Print Shop",
+  whatsapp: "527721509872",            // 52 = México + número a 10 dígitos
+  banco: {                             // ⚠️ DATOS DE EJEMPLO: reemplázalos por los reales
+    nombre: "BBVA México (ejemplo)",
+    clabe: "012180001234567890",       // 18 dígitos
+    titular: "Nombre del Titular"
+  },
+  puntosEntrega: [
+    "Campus ITP (Tecnológico de Pachuca)",
+    "Pachuca Centro",
+    "Pachuca – Plaza Gran Patio",
+    "Tepatepec",
+    "Actopan",
+    "Mixquiahuala",
+    "Otro (especificar)"
+  ],
+  // Escala de descuento por defecto (se puede sobrescribir por producto)
+  escalaDefault: [
+    { min: 1,  max: 4,    descuento: 0    },
+    { min: 5,  max: 19,   descuento: 0.05 },
+    { min: 20, max: null, descuento: 0.15 }
+  ]
+};
+
+/* ---------- Imágenes (Unsplash, placeholders) ---------- */
+const PH = {
+  cono:     "photo-1644936580583-91eb0c32c3db",
+  hexagono: "photo-1761454165168-cfdf007c6a31",
+  maquina:  "photo-1738071341556-5e584cdb3266",
+  bobinas:  "photo-1756723902445-fa875e3764f2",
+  diseno:   "photo-1756723901890-4d8a4b4cddaf",
+  estrella: "photo-1759493701773-6cec6f6eb798",
+  conejo:   "photo-1760446411816-f5484549fb51",
+  rosa:     "premium_photo-1682147386441-9e8d9e4af095",
+  boquilla: "premium_photo-1663011115788-01a57a4ced41"
+};
+const unsplash = (id, w = 900) =>
+  `https://${id.startsWith("premium_") ? "plus" : "images"}.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=70`;
+const imgs = (...keys) => keys.map(k => unsplash(PH[k]));
+
+/* =========================================================
+   CATÁLOGO DE PRODUCTOS (JSON)
+   ========================================================= */
+const CATEGORIAS = ["Todos", "Llaveros y Tarjetas", "Juguetes y Flexis", "Universitarios / Proyectos", "Decoración y Lámparas", "Temporada"];
+
+const PRODUCTOS = [
+  // ---- Llaveros y Tarjetas
+  { id: 1, nombre: "Llavero personalizado con nombre", categoria: "Llaveros y Tarjetas",
+    descripcionCorta: "Tu nombre o el de tu marca en relieve, a dos colores.",
+    descripcionDetallada: "Llavero de 6 cm impreso en PLA con texto en relieve a dos colores. Elige tipografía, color de base y color de letras; incluye argolla metálica. Ideal para recuerdos de eventos, regalos de graduación o merch para tu emprendimiento. Escribe el nombre en las notas del pedido.",
+    imagenes: imgs("estrella", "rosa", "bobinas", "boquilla", "cono"), precioBase: 35, escalaDescuento: CONFIG.escalaDefault },
+  { id: 2, nombre: "Tarjeta NFC de presentación", categoria: "Llaveros y Tarjetas",
+    descripcionCorta: "Tarjeta impresa en 3D con chip NFC para compartir tus redes.",
+    descripcionDetallada: "Tarjeta tamaño estándar (85 × 54 mm) con chip NFC NTAG215 integrado. Acércala a un celular y abre tu Instagram, LinkedIn, portafolio o WhatsApp. Lleva tu logo o iniciales en relieve. Te ayudamos a programarla con el enlace que nos indiques.",
+    imagenes: imgs("diseno", "hexagono", "maquina", "boquilla", "bobinas"), precioBase: 120, escalaDescuento: CONFIG.escalaDefault },
+  { id: 3, nombre: "Llavero Spotify con código escaneable", categoria: "Llaveros y Tarjetas",
+    descripcionCorta: "El código de tu canción favorita, escaneable desde la app.",
+    descripcionDetallada: "Placa de 8 cm con el código de Spotify de la canción, álbum o playlist que elijas, impresa en dos colores para que la app la escanee sin problema. Un regalo muy pedido para aniversarios y cumpleaños. Pega el enlace de la canción en las notas.",
+    imagenes: imgs("boquilla", "estrella", "rosa", "diseno", "cono"), precioBase: 45, escalaDescuento: CONFIG.escalaDefault },
+
+  // ---- Juguetes y Flexis
+  { id: 4, nombre: "Dragón articulado (flexi)", categoria: "Juguetes y Flexis",
+    descripcionCorta: "Dragón de 30 cm con articulaciones impresas en una sola pieza.",
+    descripcionDetallada: "Dragón flexible impreso en una sola pieza, sin ensamblado: cada segmento se mueve libremente. Mide aprox. 30 cm de largo. Disponible en colores sólidos o PLA seda multicolor (arcoíris, galaxia, dorado-plata). Un fidget relajante y una pieza muy vistosa para el escritorio.",
+    imagenes: imgs("conejo", "cono", "estrella", "rosa", "bobinas"), precioBase: 180, escalaDescuento: CONFIG.escalaDefault },
+  { id: 5, nombre: "Pulpo flexi mini", categoria: "Juguetes y Flexis",
+    descripcionCorta: "Pulpito articulado de 8 cm; perfecto para recuerdos.",
+    descripcionDetallada: "Pulpo articulado de 8 cm con tentáculos móviles. Pequeño, resistente y muy económico en volumen: ideal para fiestas infantiles, bolos o recuerdos de eventos escolares. Pide varios colores en un mismo pedido indicándolo en las notas.",
+    imagenes: imgs("rosa", "conejo", "cono", "boquilla", "hexagono"), precioBase: 30, escalaDescuento: CONFIG.escalaDefault },
+  { id: 6, nombre: "Fidget cubo infinito", categoria: "Juguetes y Flexis",
+    descripcionCorta: "Cubo plegable sin fin con bisagras impresas.",
+    descripcionDetallada: "Fidget de 8 cubos unidos por bisagras impresas en el mismo proceso, que se pliega una y otra vez sin terminar. Silencioso, ideal para la oficina o el salón. Medida aproximada de 4 × 4 cm plegado.",
+    imagenes: imgs("hexagono", "maquina", "conejo", "estrella", "diseno"), precioBase: 60, escalaDescuento: CONFIG.escalaDefault },
+
+  // ---- Universitarios / Proyectos
+  { id: 7, nombre: "Impresión de pieza por archivo STL", categoria: "Universitarios / Proyectos",
+    descripcionCorta: "Mándanos tu STL y lo imprimimos; precio de pieza pequeña.",
+    descripcionDetallada: "Servicio de impresión para tus proyectos: carcasas, soportes, engranes, prototipos. El precio base aplica a piezas de hasta 50 g de PLA y 8 × 8 × 8 cm. Envía tu archivo STL por WhatsApp junto con el pedido; si la pieza es más grande te confirmamos el ajuste antes de imprimir.",
+    imagenes: imgs("diseno", "maquina", "bobinas", "boquilla", "hexagono"), precioBase: 90, escalaDescuento: CONFIG.escalaDefault },
+  { id: 8, nombre: "Carcasa para Arduino Uno", categoria: "Universitarios / Proyectos",
+    descripcionCorta: "Caja con ventilación y acceso a USB y alimentación.",
+    descripcionDetallada: "Carcasa de dos piezas para Arduino Uno R3 con tapa a presión, ventilación y huecos para USB-B y jack de alimentación. Opción de tapa con ranura para cables de jumper. Perfecta para presentar prácticas y proyectos finales con acabado profesional.",
+    imagenes: imgs("maquina", "diseno", "boquilla", "hexagono", "bobinas"), precioBase: 110, escalaDescuento: CONFIG.escalaDefault },
+  { id: 9, nombre: "Maqueta / modelo a escala", categoria: "Universitarios / Proyectos",
+    descripcionCorta: "Modelos para arquitectura, ingeniería o exposiciones.",
+    descripcionDetallada: "Impresión de maquetas y modelos a escala para clases de arquitectura, civil, mecánica o ferias de ciencia. El precio base es por módulo de hasta 15 × 15 cm. Podemos ayudarte a adaptar tu modelo de SketchUp, Fusion 360 o SolidWorks para impresión.",
+    imagenes: imgs("bobinas", "diseno", "maquina", "cono", "hexagono"), precioBase: 250, escalaDescuento: CONFIG.escalaDefault },
+
+  // ---- Decoración y Lámparas
+  { id: 10, nombre: "Lámpara litofanía con foto", categoria: "Decoración y Lámparas",
+    descripcionCorta: "Tu foto aparece al encender la luz. Base LED incluida.",
+    descripcionDetallada: "Litofanía cilíndrica de 12 cm: la imagen se forma por el grosor del plástico y aparece nítida al encender la luz LED cálida de la base (USB). Envía tu foto favorita por WhatsApp; te mostramos una vista previa antes de imprimir. Un regalo muy personal.",
+    imagenes: imgs("cono", "rosa", "estrella", "boquilla", "maquina"), precioBase: 350, escalaDescuento: CONFIG.escalaDefault },
+  { id: 11, nombre: "Lámpara de luna", categoria: "Decoración y Lámparas",
+    descripcionCorta: "Luna con relieve real de cráteres y luz en 3 tonos.",
+    descripcionDetallada: "Esfera de 12 cm con la topografía lunar en relieve, impresa en PLA blanco. Incluye base de madera y luz LED recargable con tres tonos (blanco, cálido, amarillo). Ambiente relajante para recámara o escritorio.",
+    imagenes: imgs("estrella", "cono", "hexagono", "rosa", "bobinas"), precioBase: 420, escalaDescuento: CONFIG.escalaDefault },
+  { id: 12, nombre: "Maceta geométrica low-poly", categoria: "Decoración y Lámparas",
+    descripcionCorta: "Maceta facetada para suculentas, con plato drenante.",
+    descripcionDetallada: "Maceta de 10 cm con diseño de facetas low-poly y plato inferior para drenaje. Impresa en PETG resistente a la humedad. Disponible en blanco, negro, verde menta, terracota o mármol. Ideal para suculentas y cactus.",
+    imagenes: imgs("hexagono", "boquilla", "cono", "diseno", "estrella"), precioBase: 140, escalaDescuento: CONFIG.escalaDefault },
+
+  // ---- Temporada
+  { id: 13, nombre: "Calaverita decorativa Día de Muertos", categoria: "Temporada",
+    descripcionCorta: "Calavera con detalles de flores, para tu ofrenda.",
+    descripcionDetallada: "Calaverita de 7 cm con grabado de flores de cempasúchil, impresa en PLA y disponible en colores sólidos o seda dorada. Se puede personalizar con un nombre en la frente para la ofrenda. Pide con anticipación: es el producto más solicitado de la temporada.",
+    imagenes: imgs("rosa", "estrella", "conejo", "cono", "boquilla"), precioBase: 70, escalaDescuento: CONFIG.escalaDefault },
+  { id: 14, nombre: "Esferas navideñas personalizadas", categoria: "Temporada",
+    descripcionCorta: "Esfera calada con nombre, para el árbol.",
+    descripcionDetallada: "Esfera de 8 cm con diseño calado (copos, estrellas o patrón geométrico) y el nombre que elijas. Ligera y resistente, no se rompe como el vidrio. Perfecta como regalo de intercambio o detalle para clientes en diciembre.",
+    imagenes: imgs("estrella", "hexagono", "rosa", "bobinas", "cono"), precioBase: 55, escalaDescuento: CONFIG.escalaDefault },
+  { id: 15, nombre: "Cortador de galletas a medida", categoria: "Temporada",
+    descripcionCorta: "Cortador con la forma que quieras: logo, letra o figura.",
+    descripcionDetallada: "Cortador de galletas o fondant de 8–10 cm impreso en PLA apto para contacto breve con alimentos. Lo diseñamos a partir de tu logo, inicial o dibujo. Ideal para reposterías, fiestas temáticas y temporada navideña.",
+    imagenes: imgs("diseno", "boquilla", "maquina", "estrella", "rosa"), precioBase: 85, escalaDescuento: CONFIG.escalaDefault }
+];
+
+/* =========================================================
+   UTILIDADES
+   ========================================================= */
+const $ = (s, el = document) => el.querySelector(s);
+const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+const fmt = n => new Intl.NumberFormat("es-MX", { style: "currency", currency: "MXN", minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 }).format(n);
+const round2 = n => Math.round(n * 100) / 100;
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const norm = s => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+const clampQty = q => Math.max(1, Math.min(999, parseInt(q, 10) || 1));
+const byId = id => PRODUCTOS.find(p => p.id === id);
+
+function tierFor(p, qty) {
+  return p.escalaDescuento.find(t => qty >= t.min && (t.max === null || qty <= t.max)) || p.escalaDescuento[0];
+}
+function unitPrice(p, qty) { return round2(p.precioBase * (1 - tierFor(p, qty).descuento)); }
+function tierLabel(t) { return t.max === null ? `${t.min}+ pz` : `${t.min}–${t.max} pz`; }
+function maxDiscount(p) { return Math.max(...p.escalaDescuento.map(t => t.descuento)); }
+
+// Fallback si una imagen no carga
+function imgFallback(el) {
+  if (el.dataset.fb) return;
+  el.dataset.fb = 1;
+  const t = (el.alt || "3D").trim().charAt(0).toUpperCase();
+  const svg = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='#ccfbf1'/><stop offset='1' stop-color='#99f6e4'/></linearGradient></defs><rect width='400' height='300' fill='url(#g)'/><g fill='none' stroke='#0f766e' stroke-width='6' stroke-linejoin='round' opacity='.35'><path d='M200 70l-70 40v80l70 40 70-40v-80z'/><path d='M130 110l70 40 70-40M200 150v80'/></g><text x='200' y='275' text-anchor='middle' font-family='sans-serif' font-size='22' font-weight='700' fill='#0f766e' opacity='.6'>${t}</text></svg>`;
+  el.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+}
+const IMG_ATTR = `onerror="imgFallback(this)" loading="lazy" decoding="async"`;
+
+let toastT;
+function toast(msg) {
+  const t = $("#toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  clearTimeout(toastT);
+  toastT = setTimeout(() => t.classList.remove("show"), 2400);
+}
+
+/* =========================================================
+   ESTADO
+   ========================================================= */
+const state = { cat: "Todos", q: "", current: null, imgIndex: 0, qty: 1, payment: "efectivo", receipt: null };
+
+const store = {
+  get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+};
+let cart = store.get("3dps_cart", []).filter(i => byId(i.id));   // [{id, qty}]
+const saveCart = () => store.set("3dps_cart", cart);
+
+/* =========================================================
+   RENDER: TABS + GRID
+   ========================================================= */
+function filtered() {
+  const q = norm(state.q.trim());
+  return PRODUCTOS.filter(p => {
+    const inCat = state.cat === "Todos" || p.categoria === state.cat;
+    if (!inCat) return false;
+    if (!q) return true;
+    const hay = norm([p.nombre, p.categoria, p.descripcionCorta, p.descripcionDetallada].join(" "));
+    return q.split(/\s+/).every(w => hay.includes(w));
+  });
+}
+
+function renderTabs() {
+  const q = norm(state.q.trim());
+  $("#tabs").innerHTML = CATEGORIAS.map(c => {
+    const n = PRODUCTOS.filter(p => (c === "Todos" || p.categoria === c) &&
+      (!q || q.split(/\s+/).every(w => norm([p.nombre, p.categoria, p.descripcionCorta, p.descripcionDetallada].join(" ")).includes(w)))).length;
+    return `<button class="tab ${c === state.cat ? "active" : ""}" role="tab" aria-selected="${c === state.cat}" data-cat="${esc(c)}">${esc(c)} <span class="n">${n}</span></button>`;
+  }).join("");
+}
+
+function renderGrid() {
+  const list = filtered();
+  const info = $("#resultInfo");
+  info.textContent = state.q.trim()
+    ? `${list.length} resultado${list.length === 1 ? "" : "s"} para “${state.q.trim()}”${state.cat !== "Todos" ? " en " + state.cat : ""}`
+    : `${list.length} producto${list.length === 1 ? "" : "s"}`;
+
+  if (!list.length) {
+    $("#grid").innerHTML = `<div class="empty"><div class="big">🔍</div><p><b>No encontramos productos.</b><br>Prueba con otra palabra o cambia de categoría.</p></div>`;
+    return;
+  }
+  $("#grid").innerHTML = list.map((p, i) => `
+    <article class="card" style="animation-delay:${Math.min(i, 10) * 40}ms">
+      <div class="card-media" data-open="${p.id}">
+        <img src="${p.imagenes[0].replace(/w=\d+/, "w=600")}" alt="${esc(p.nombre)}" ${IMG_ATTR}>
+        ${maxDiscount(p) > 0 ? `<span class="badge-disc">Hasta −${Math.round(maxDiscount(p) * 100)}% mayoreo</span>` : ""}
+      </div>
+      <div class="card-body">
+        <span class="card-cat">${esc(p.categoria)}</span>
+        <h3 class="card-title">${esc(p.nombre)}</h3>
+        <p class="card-desc">${esc(p.descripcionCorta)}</p>
+        <div class="card-foot">
+          <div>
+            <div class="price-from">Desde</div>
+            <div class="price">${fmt(p.precioBase)} <small>/ pz</small></div>
+          </div>
+          <button class="btn btn-primary btn-sm" data-open="${p.id}">Ver detalles / Comprar</button>
+        </div>
+      </div>
+    </article>`).join("");
+}
+
+function render() { renderTabs(); renderGrid(); }
+
+/* =========================================================
+   OVERLAYS (modales y carrito)
+   ========================================================= */
+const layers = [];
+let lastFocus = null;
+function openLayer(el) {
+  if (!layers.length) lastFocus = document.activeElement;
+  layers.push(el);
+  el.classList.add("open");
+  $("#overlay").classList.add("open");
+  document.body.classList.add("locked");
+  setTimeout(() => { const f = el.querySelector("[data-close]"); f && f.focus({ preventScroll: true }); }, 50);
+}
+function closeLayer(el) {
+  el = el || layers[layers.length - 1];
+  if (!el) return;
+  el.classList.remove("open");
+  const i = layers.indexOf(el);
+  if (i > -1) layers.splice(i, 1);
+  if (!layers.length) {
+    $("#overlay").classList.remove("open");
+    document.body.classList.remove("locked");
+    lastFocus && lastFocus.focus && lastFocus.focus({ preventScroll: true });
+  }
+}
+$("#overlay").addEventListener("click", () => closeLayer());
+$$(".modal").forEach(m => m.addEventListener("click", e => { if (e.target === m) closeLayer(m); }));
+$$("[data-close]").forEach(b => b.addEventListener("click", e => closeLayer(e.target.closest(".modal, .drawer"))));
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape" && layers.length) closeLayer();
+  if ($("#productModal").classList.contains("open") && layers[layers.length - 1] === $("#productModal")) {
+    if (e.key === "ArrowRight" && e.target.tagName !== "INPUT") goImg(state.imgIndex + 1);
+    if (e.key === "ArrowLeft" && e.target.tagName !== "INPUT") goImg(state.imgIndex - 1);
+  }
+});
+
+/* =========================================================
+   MODAL DE PRODUCTO
+   ========================================================= */
+function openProduct(id) {
+  const p = byId(id);
+  if (!p) return;
+  state.current = p;
+  state.imgIndex = 0;
+  const inCart = cart.find(i => i.id === id);
+  state.qty = 1;
+
+  $("#pmCat").textContent = p.categoria;
+  $("#pmTitle").textContent = p.nombre;
+  $("#pmDesc").textContent = p.descripcionDetallada;
+  $("#stageTrack").innerHTML = p.imagenes.map((src, i) => `<img src="${src}" alt="${esc(p.nombre)} – imagen ${i + 1}" ${i ? IMG_ATTR : 'onerror="imgFallback(this)"'}>`).join("");
+  $("#thumbs").innerHTML = p.imagenes.map((src, i) => {
+    const small = src.replace(/w=\d+/, "w=200");
+    return `<button class="thumb ${i === 0 ? "on" : ""}" data-i="${i}" aria-label="Ver imagen ${i + 1}"><img src="${small}" alt="" ${IMG_ATTR}></button>`;
+  }).join("");
+  $("#dots").innerHTML = p.imagenes.map((_, i) => `<span class="${i === 0 ? "on" : ""}"></span>`).join("");
+  $("#stageTrack").style.transform = "translateX(0)";
+  $("#addToCart").lastChild.textContent = inCart ? " Agregar más al carrito" : " Agregar al carrito";
+  updateCalc();
+  openLayer($("#productModal"));
+  $("#productModal .modal-box").scrollTop = 0;
+}
+
+function goImg(i) {
+  const n = state.current.imagenes.length;
+  state.imgIndex = (i + n) % n;
+  $("#stageTrack").style.transform = `translateX(-${state.imgIndex * 100}%)`;
+  $$("#thumbs .thumb").forEach((t, k) => t.classList.toggle("on", k === state.imgIndex));
+  $$("#dots span").forEach((d, k) => d.classList.toggle("on", k === state.imgIndex));
+}
+$("#prevImg").addEventListener("click", () => goImg(state.imgIndex - 1));
+$("#nextImg").addEventListener("click", () => goImg(state.imgIndex + 1));
+$("#thumbs").addEventListener("click", e => { const b = e.target.closest(".thumb"); if (b) goImg(+b.dataset.i); });
+
+// Swipe en móvil
+(() => {
+  let x0 = null;
+  const st = $("#stage");
+  st.addEventListener("touchstart", e => { x0 = e.touches[0].clientX; }, { passive: true });
+  st.addEventListener("touchend", e => {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 40) goImg(state.imgIndex + (dx < 0 ? 1 : -1));
+    x0 = null;
+  });
+})();
+
+function updateCalc() {
+  const p = state.current, q = state.qty;
+  const t = tierFor(p, q), u = unitPrice(p, q), total = round2(u * q);
+  const sinDesc = round2(p.precioBase * q);
+  $("#qtyInput").value = q;
+
+  $("#pmTiers").innerHTML = p.escalaDescuento.map(tt => `
+    <div class="tier ${tt === t ? "on" : ""}">
+      <div class="r">${tierLabel(tt)}</div>
+      <div class="p">${fmt(round2(p.precioBase * (1 - tt.descuento)))}</div>
+      <div class="d">${tt.descuento ? "−" + Math.round(tt.descuento * 100) + "%" : "Precio base"}</div>
+    </div>`).join("");
+
+  $("#calcLines").innerHTML = `
+    <div><span>Precio unitario</span><span>${fmt(u)}${t.descuento ? ` <s style="color:var(--ink-3)">${fmt(p.precioBase)}</s>` : ""}</span></div>
+    <div><span>${q} × ${fmt(u)}</span><span>${fmt(total)}</span></div>
+    ${t.descuento ? `<div class="save"><span>Ahorras (−${Math.round(t.descuento * 100)}%)</span><span>${fmt(round2(sinDesc - total))}</span></div>` : ""}`;
+
+  const next = p.escalaDescuento.find(tt => tt.min > q);
+  $("#nudge").textContent = next
+    ? `💡 Agrega ${next.min - q} pz más y paga ${fmt(round2(p.precioBase * (1 - next.descuento)))} c/u (−${Math.round(next.descuento * 100)}%).`
+    : "";
+  $("#calcTotal").textContent = fmt(total);
+}
+$("#qtyMinus").addEventListener("click", () => { state.qty = clampQty(state.qty - 1); updateCalc(); });
+$("#qtyPlus").addEventListener("click", () => { state.qty = clampQty(state.qty + 1); updateCalc(); });
+$("#qtyInput").addEventListener("input", e => {
+  if (e.target.value === "") return;
+  state.qty = clampQty(e.target.value); updateCalc();
+});
+$("#qtyInput").addEventListener("blur", e => { state.qty = clampQty(e.target.value); updateCalc(); });
+
+$("#addToCart").addEventListener("click", () => {
+  const p = state.current;
+  const item = cart.find(i => i.id === p.id);
+  if (item) item.qty = clampQty(item.qty + state.qty);
+  else cart.push({ id: p.id, qty: state.qty });
+  saveCart();
+  renderCart();
+  bumpCount();
+  closeLayer($("#productModal"));
+  toast(`✅ ${state.qty} × ${p.nombre} agregado`);
+});
+
+/* =========================================================
+   CARRITO
+   ========================================================= */
+function cartTotals() {
+  let total = 0, base = 0, pcs = 0;
+  cart.forEach(i => {
+    const p = byId(i.id);
+    total += unitPrice(p, i.qty) * i.qty;
+    base += p.precioBase * i.qty;
+    pcs += i.qty;
+  });
+  return { total: round2(total), base: round2(base), ahorro: round2(base - total), pcs };
+}
+function updateCount() {
+  const n = cart.reduce((s, i) => s + i.qty, 0);
+  $$("[data-count]").forEach(c => c.textContent = n > 99 ? "99+" : n);
+}
+function bumpCount() {
+  $$("[data-count]").forEach(c => { c.classList.remove("bump"); void c.offsetWidth; c.classList.add("bump"); });
+}
+
+function renderCart() {
+  updateCount();
+  const list = $("#cartList");
+  const has = cart.length > 0;
+  $("#customerForm").style.display = has ? "" : "none";
+  $("#toCheckout").disabled = !has;
+
+  if (!has) {
+    list.innerHTML = `<div class="cart-empty"><div class="big">🛒</div><p><b>Tu carrito está vacío</b></p><p style="font-size:.88rem;margin-top:4px">Explora el catálogo y agrega tus productos.</p><button class="btn btn-ghost" style="margin-top:16px" data-keep-shopping>Ver productos</button></div>`;
+    $("#cartTotals").innerHTML = "";
+    return;
+  }
+  list.innerHTML = cart.map(i => {
+    const p = byId(i.id), t = tierFor(p, i.qty), u = unitPrice(p, i.qty);
+    return `
+    <div class="ci" data-id="${p.id}">
+      <img src="${p.imagenes[0].replace(/w=\d+/, "w=160")}" alt="${esc(p.nombre)}" ${IMG_ATTR}>
+      <div>
+        <div class="ci-name">${esc(p.nombre)}</div>
+        <div class="ci-meta">${fmt(u)} c/u${t.descuento ? `<span class="tag">−${Math.round(t.descuento * 100)}%</span>` : ""}</div>
+        <div class="stepper sm">
+          <button data-act="dec" aria-label="Menos">−</button>
+          <input type="number" min="1" max="999" value="${i.qty}" data-act="set" aria-label="Cantidad de ${esc(p.nombre)}">
+          <button data-act="inc" aria-label="Más">+</button>
+        </div>
+      </div>
+      <div class="ci-right">
+        <div class="ci-sub">${fmt(round2(u * i.qty))}</div>
+        <button class="ci-del" data-act="del">Quitar</button>
+      </div>
+    </div>`;
+  }).join("");
+
+  const tt = cartTotals();
+  $("#cartTotals").innerHTML = `
+    <div><span>Piezas</span><span>${tt.pcs}</span></div>
+    ${tt.ahorro > 0 ? `<div><span>Subtotal sin descuento</span><span>${fmt(tt.base)}</span></div><div class="save"><span>Descuento por mayoreo</span><span>−${fmt(tt.ahorro)}</span></div>` : ""}
+    <div class="grand"><span>Total</span><span>${fmt(tt.total)}</span></div>`;
+}
+
+$("#cartList").addEventListener("click", e => {
+  if (e.target.closest("[data-keep-shopping]")) { closeLayer($("#drawer")); return; }
+  const btn = e.target.closest("[data-act]");
+  if (!btn || btn.tagName === "INPUT") return;
+  const id = +btn.closest(".ci").dataset.id;
+  const item = cart.find(i => i.id === id);
+  const act = btn.dataset.act;
+  if (act === "inc") item.qty = clampQty(item.qty + 1);
+  if (act === "dec") { if (item.qty <= 1) return; item.qty--; }
+  if (act === "del") cart = cart.filter(i => i.id !== id);
+  saveCart(); renderCart();
+});
+$("#cartList").addEventListener("change", e => {
+  if (e.target.dataset.act !== "set") return;
+  const id = +e.target.closest(".ci").dataset.id;
+  cart.find(i => i.id === id).qty = clampQty(e.target.value);
+  saveCart(); renderCart();
+});
+
+$$("[data-open-cart]").forEach(b => b.addEventListener("click", () => { renderCart(); openLayer($("#drawer")); }));
+
+// Formulario del cliente
+$("#cLoc").innerHTML = `<option value="">Selecciona un punto…</option>` + CONFIG.puntosEntrega.map(p => `<option>${esc(p)}</option>`).join("");
+const isOther = () => /^otro/i.test($("#cLoc").value);
+$("#cLoc").addEventListener("change", () => {
+  $("#fLocOther").style.display = isOther() ? "" : "none";
+  $("#fLoc").classList.remove("err");
+  if (isOther()) $("#cLocOther").focus();
+  saveForm();
+});
+["cName", "cLocOther", "cNotes"].forEach(id => $("#" + id).addEventListener("input", e => { e.target.closest(".field").classList.remove("err"); saveForm(); }));
+
+function saveForm() { store.set("3dps_form", { name: $("#cName").value, loc: $("#cLoc").value, other: $("#cLocOther").value, notes: $("#cNotes").value }); }
+(function loadForm() {
+  const f = store.get("3dps_form", null);
+  if (!f) return;
+  $("#cName").value = f.name || "";
+  if (CONFIG.puntosEntrega.includes(f.loc)) $("#cLoc").value = f.loc;
+  $("#cLocOther").value = f.other || "";
+  $("#cNotes").value = f.notes || "";
+  $("#fLocOther").style.display = isOther() ? "" : "none";
+})();
+
+function customer() {
+  return {
+    name: $("#cName").value.trim(),
+    loc: isOther() ? $("#cLocOther").value.trim() : $("#cLoc").value,
+    notes: $("#cNotes").value.trim()
+  };
+}
+function validateCustomer() {
+  let ok = true, first = null;
+  const mark = (fid, bad, input) => { $(fid).classList.toggle("err", bad); if (bad) { ok = false; first = first || input; } };
+  mark("#fName", $("#cName").value.trim().length < 3, $("#cName"));
+  mark("#fLoc", !$("#cLoc").value, $("#cLoc"));
+  if (isOther()) mark("#fLocOther", !$("#cLocOther").value.trim(), $("#cLocOther"));
+  if (first) first.focus();
+  return ok;
+}
+
+$("#toCheckout").addEventListener("click", () => {
+  if (!cart.length) return;
+  if (!validateCustomer()) { toast("Completa tus datos de entrega"); return; }
+  openCheckout();
+});
+
+/* =========================================================
+   CHECKOUT
+   ========================================================= */
+const ICON_COPY = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>`;
+const ICON_UP = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M6 10l6-6 6 6"/><path d="M4 20h16"/></svg>`;
+
+function openCheckout() {
+  state.receipt = null;
+  const c = customer(), tt = cartTotals();
+  const clabeFmt = CONFIG.banco.clabe.replace(/(\d{3})(\d{3})(\d{11})(\d{1})/, "$1 $2 $3 $4");
+  $("#coInner").innerHTML = `
+    <h2 id="coTitle">Confirmar pedido</h2>
+    <p class="co-sub">Para <b>${esc(c.name)}</b> · ${esc(c.loc)}</p>
+    <div class="summary">
+      ${cart.map(i => { const p = byId(i.id), u = unitPrice(p, i.qty); return `<div class="row"><span>${i.qty} × ${esc(p.nombre)}</span><span>${fmt(round2(u * i.qty))}</span></div>`; }).join("")}
+      ${tt.ahorro > 0 ? `<div class="row" style="color:var(--accent-ink);font-weight:700"><span>Descuento por mayoreo</span><span>−${fmt(tt.ahorro)}</span></div>` : ""}
+      <div class="row total"><span>Total a pagar</span><span>${fmt(tt.total)}</span></div>
+    </div>
+
+    <div class="section-t" style="margin-top:0">Método de pago</div>
+    <div class="pay-opts" role="radiogroup">
+      <label class="pay"><input type="radio" name="pay" value="efectivo" ${state.payment === "efectivo" ? "checked" : ""}>
+        <div><div class="t">Efectivo contra entrega</div><div class="s">Pagas al recibir tu pedido</div></div><span class="emo">💵</span></label>
+      <label class="pay"><input type="radio" name="pay" value="transferencia" ${state.payment === "transferencia" ? "checked" : ""}>
+        <div><div class="t">Transferencia bancaria</div><div class="s">SPEI a la cuenta indicada</div></div><span class="emo">🏦</span></label>
+    </div>
+
+    <div class="bank ${state.payment === "transferencia" ? "show" : ""}" id="bankBox">
+      <div class="bank-row"><span>Banco</span><b>${esc(CONFIG.banco.nombre)}</b></div>
+      <div class="bank-row"><span>CLABE</span>
+        <div class="clabe-wrap"><b class="clabe">${clabeFmt}</b>
+        <button class="copy-btn" id="copyClabe" type="button">${ICON_COPY}<span>Copiar</span></button></div></div>
+      <div class="bank-row"><span>Titular</span><b>${esc(CONFIG.banco.titular)}</b></div>
+      <div class="bank-row"><span>Monto</span><b>${fmt(tt.total)}</b></div>
+      <label class="upload" id="uploadBox">
+        <input type="file" id="receipt" accept="image/*,application/pdf">
+        <span class="ico" id="upIco">${ICON_UP}</span>
+        <span><span class="t" id="upT">Adjuntar comprobante</span><br><span class="s" id="upS">Captura o PDF de tu transferencia</span></span>
+      </label>
+      <p class="note">ℹ️ WhatsApp no permite enviar archivos desde un enlace. Al abrir el chat, <b>adjunta ahí la misma captura</b> para confirmar tu pago.</p>
+    </div>
+
+    <div class="co-actions">
+      <button class="btn btn-wa btn-block" id="sendWa" style="height:52px;font-size:.98rem">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>
+        Confirmar y enviar pedido por WhatsApp
+      </button>
+      <button class="btn btn-ghost btn-block" data-back>← Volver al carrito</button>
+    </div>`;
+
+  $$('input[name="pay"]', $("#coInner")).forEach(r => r.addEventListener("change", e => {
+    state.payment = e.target.value;
+    $("#bankBox").classList.toggle("show", state.payment === "transferencia");
+  }));
+  $("#copyClabe").addEventListener("click", copyClabe);
+  $("#receipt").addEventListener("change", onReceipt);
+  $("#sendWa").addEventListener("click", sendWhatsApp);
+  $("[data-back]", $("#coInner")).addEventListener("click", () => closeLayer($("#checkoutModal")));
+
+  openLayer($("#checkoutModal"));
+  $("#checkoutModal .modal-box").scrollTop = 0;
+}
+
+async function copyClabe() {
+  const btn = $("#copyClabe"), txt = CONFIG.banco.clabe;
+  let ok = false;
+  try { await navigator.clipboard.writeText(txt); ok = true; }
+  catch (e) {
+    const ta = document.createElement("textarea");
+    ta.value = txt; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select();
+    try { ok = document.execCommand("copy"); } catch (_) {}
+    ta.remove();
+  }
+  if (ok) {
+    btn.classList.add("ok"); btn.querySelector("span").textContent = "¡Copiada!";
+    toast("📋 CLABE copiada al portapapeles");
+    setTimeout(() => { btn.classList.remove("ok"); btn.querySelector("span").textContent = "Copiar"; }, 2000);
+  } else toast("No se pudo copiar; selecciona la CLABE manualmente");
+}
+
+function onReceipt(e) {
+  const f = e.target.files[0];
+  state.receipt = f || null;
+  const box = $("#uploadBox");
+  if (!f) { box.classList.remove("has"); $("#upT").textContent = "Adjuntar comprobante"; $("#upS").textContent = "Captura o PDF de tu transferencia"; $("#upIco").innerHTML = ICON_UP; return; }
+  box.classList.add("has");
+  $("#upT").textContent = "Comprobante listo ✓";
+  $("#upS").textContent = `${f.name} · ${(f.size / 1024).toFixed(0)} KB · toca para cambiar`;
+  if (f.type.startsWith("image/")) {
+    const url = URL.createObjectURL(f);
+    $("#upIco").innerHTML = `<img src="${url}" alt="Vista previa del comprobante">`;
+  } else $("#upIco").textContent = "📄";
+}
+
+function buildMessage() {
+  const c = customer(), tt = cartTotals();
+  const lines = [];
+  lines.push(`👋 ¡Hola, *${CONFIG.negocio}*! Quiero hacer un pedido.`);
+  lines.push("");
+  lines.push(`👤 *Cliente:* ${c.name}`);
+  lines.push(`📍 *Entrega:* ${c.loc}`);
+  if (c.notes) lines.push(`📝 *Notas:* ${c.notes}`);
+  lines.push("");
+  lines.push("🛒 *Pedido:*");
+  cart.forEach((i, k) => {
+    const p = byId(i.id), t = tierFor(p, i.qty), u = unitPrice(p, i.qty);
+    lines.push(`${k + 1}. ${p.nombre}`);
+    lines.push(`    ${i.qty} pz × ${fmt(u)}${t.descuento ? ` (−${Math.round(t.descuento * 100)}%)` : ""} = *${fmt(round2(u * i.qty))}*`);
+  });
+  lines.push("");
+  if (tt.ahorro > 0) lines.push(`🏷️ Descuento por mayoreo: −${fmt(tt.ahorro)}`);
+  lines.push(`💰 *Total a pagar: ${fmt(tt.total)} MXN*`);
+  lines.push("");
+  if (state.payment === "transferencia") {
+    lines.push("💳 *Método de pago:* Transferencia bancaria");
+    lines.push(state.receipt
+      ? `📎 *Comprobante:* Sí, adjunto (${state.receipt.name}). Lo envío en este chat.`
+      : "📎 *Comprobante:* Aún no; lo enviaré en cuanto realice la transferencia.");
+  } else {
+    lines.push("💵 *Método de pago:* Efectivo contra entrega");
+  }
+  lines.push("");
+  lines.push("¡Gracias! 🙌");
+  return lines.join("\n");
+}
+
+function sendWhatsApp() {
+  const url = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(buildMessage())}`;
+  const w = window.open(url, "_blank", "noopener");
+  if (!w) location.href = url;
+  const conComprobante = state.payment === "transferencia" && state.receipt;
+
+  // Pantalla de éxito y vaciado del carrito
+  $("#coInner").innerHTML = `
+    <div class="success">
+      <div class="big">🎉</div>
+      <h2 id="coTitle" style="padding:0">¡Pedido listo para enviar!</h2>
+      <p>Se abrió WhatsApp con el resumen de tu pedido. <b>Solo presiona “Enviar”</b> en el chat.</p>
+      ${conComprobante ? `<p style="margin-top:10px;background:var(--accent-softer);padding:10px 12px;border-radius:12px;color:var(--accent-ink);font-weight:600">📎 No olvides adjuntar tu comprobante (${esc(state.receipt.name)}) en el chat.</p>` : ""}
+      ${state.payment === "transferencia" && !state.receipt ? `<p style="margin-top:10px;font-size:.9rem">Cuando hagas la transferencia, manda la captura por el mismo chat.</p>` : ""}
+      <div class="co-actions">
+        <a class="btn btn-wa btn-block" href="${url}" target="_blank" rel="noopener">Abrir WhatsApp otra vez</a>
+        <button class="btn btn-ghost btn-block" data-done>Seguir comprando</button>
+      </div>
+    </div>`;
+  $("[data-done]", $("#coInner")).addEventListener("click", () => { closeLayer($("#checkoutModal")); closeLayer($("#drawer")); });
+
+  cart = []; saveCart(); renderCart();
+  $("#cNotes").value = ""; saveForm();
+}
+
+/* =========================================================
+   EVENTOS GENERALES
+   ========================================================= */
+$("#tabs").addEventListener("click", e => {
+  const t = e.target.closest(".tab");
+  if (!t) return;
+  state.cat = t.dataset.cat;
+  render();
+  t.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+});
+$("#grid").addEventListener("click", e => {
+  const o = e.target.closest("[data-open]");
+  if (o) openProduct(+o.dataset.open);
+});
+let searchT;
+$("#search").addEventListener("input", e => {
+  state.q = e.target.value;
+  $("#searchBox").classList.toggle("has-value", !!state.q);
+  clearTimeout(searchT);
+  searchT = setTimeout(render, 120);
+});
+$("#clearSearch").addEventListener("click", () => {
+  $("#search").value = ""; state.q = ""; $("#searchBox").classList.remove("has-value"); render(); $("#search").focus();
+});
+
+$("#year").textContent = new Date().getFullYear();
+render();
+renderCart();
+</script>
+</body>
+</html>
