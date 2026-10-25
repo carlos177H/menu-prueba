@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Digital - Restaurante de Prueba</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #e67e22;
+        }
+        .item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .item-info h3 {
+            margin: 0 0 5px 0;
+            font-size: 18px;
+        }
+        .item-info p {
+            margin: 0;
+            color: #777;
+            font-size: 14px;
+        }
+        .price {
+            font-weight: bold;
+            color: #27ae60;
+            margin-right: 15px;
+        }
+        .btn-order {
+            background-color: #25d366;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-order:hover {
+            background-color: #1ebe5d;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🌮 El Buen Sabor</h1>
+        <p style="text-align: center; color: #666;">Menú digital de prueba</p>
+
+        <div id="menu-list">
+            <!-- Aquí cargaremos los platillos -->
+        </div>
+    </div>
+
+    <script>
+        // Simulación de una base de datos (tus productos)
+        const platillos = [
+            { nombre: "Tacos al Pastor (Orden)", precio: "$85.00", desc: "4 deliciosos tacos con piña y cilantro." },
+            { nombre: "Gringa de Bistec", precio: "$95.00", desc: "Tortilla de harina con queso y carne." },
+            { nombre: "Agua Fresca de Horchata", precio: "$30.00", desc: "Vaso de 500ml natural del día." }
+        ];
+
+        const contenedor = document.getElementById("menu-list");
+
+        platillos.forEach(p => {
+            // Creamos el enlace directo a WhatsApp con el platillo seleccionado
+            let mensaje = encodeURIComponent(`Hola, me gustaría ordenar: 1x ${p.nombre} (${p.precio})`);
+            let linkWhatsApp = `https://wa.me/521234567890?text=${mensaje}`; // Reemplaza con tu número real si quieres probar
+
+            let htmlItem = `
+                <div class="item">
+                    <div class="item-info">
+                        <h3>${p.nombre}</h3>
+                        <p>${p.desc}</p>
+                    </div>
+                    <div>
+                        <span class="price">${p.precio}</span>
+                        <a href="${linkWhatsApp}" target="_blank" class="btn-order">Pedir</a>
+                    </div>
+                </div>
+            `;
+            contenedor.innerHTML += htmlItem;
+        });
+    </script>
+
+</body>
+</html>
